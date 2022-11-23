@@ -1,0 +1,147 @@
+---
+title: 'RWorksheet #4'
+author: "Jeodalyn Edulag"
+date: "2022-11-23"
+output: pdf_document
+---
+
+\hfill\break
+1.The table below shows the data about shoe size and height.
+Create a data frame.
+
+```{r, vector = TRUE}
+s_size <- c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,
+            10.5,8.5,12.0,10.5)
+hght <- c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,
+          64.0,74.5,67.0,71.0,71.0)
+gen <- c("F","F","F","F","M","F","F","F","M","F","M",
+         "F","M","M")
+S_size <- c(13.0,11.5,8.5,5.0,10.0,6.5,7.5,8.5,10.5,
+            8.5,10.5,11.0,9.0,13.0)
+Hght <- c(77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,
+          69.0,72.0,70.0,69.0,70.0)
+Gen <- c("M","M","F","F","M","F","F","M","M","F",
+         "M","M","M","M")
+
+dfrm <- data.frame(s_size,hght, gen, S_size, 
+                   Hght, Gen)
+dfrm
+
+```
+
+a. Describe the data.
+```{r, vector = TRUE}
+##The data shows the different shoe size among male and female in different heights.
+
+```
+
+b. Find the mean of shoe size and height of the respondents. Copy the codes and results.
+```{r, vector = TRUE}
+m1 <- mean(s_size)
+m1
+
+m2 <- mean(S_size)
+m2
+
+ttl <- c(m1, m2)
+ttl
+
+# Total shoe size mean.
+s_mean <- mean(ttl)
+s_mean
+
+m3 <- mean(hght)
+m3
+
+m4 <- mean(Hght)
+m4
+
+ttl1 <- c(m3, m4)
+ttl1
+
+# Total height mean.
+h_mean <- mean(ttl1)
+h_mean
+
+```
+
+c. Is there a relationship between shoe size and height? Why?
+```{r, vector = TRUE}
+##Yes, there is a relationship between shoe size and height, 
+##the shoe sizes is big when the respondents is also tall.
+##If the height of the respondents is below 70.0 their shoe 
+##size will be small.
+
+```
+
+#Factors
+\hfill\break
+2.Construct character vector months to a factor with factor() 
+and assign the result to factor_months_vector. Print out 
+factor_months_vector and assert that R prints out the 
+factor levels below the actual values.Consider data 
+consisting of the names of months:
+```{r, vector = TRUE}
+months_vector <- c("March","April","January","November",
+                   "January","September","October","September",
+                   "November","August","January","November",
+                   "November", "February","May","August",
+                   "July","December","August",
+                   "August","September","November",
+                   "February","April")
+
+factor_months_vector <- factor(months_vector)
+factor_months_vector
+
+```
+
+\hfill\break
+3. Then check the summary() of the months_vector and 
+factor_months_vector. Interpret the results of both vectors.
+Are they both equally useful in this case?
+
+```{r, vector = TRUE}
+smy <- summary(months_vector)
+smy
+
+smy1 <- summary(factor_months_vector)
+smy1
+
+##Both of the vector summary are useful because at the 
+##summary of months_vector tells us about the length, class, 
+##and mode. In summary of factor_months_vector it tells 
+##us how many repeating elements there are.
+
+```
+
+\hfill\break
+4. Create a vector and factor for the table below.
+
+```{r, vector = TRUE}
+
+Direction <- c("East", "West", "North") 
+Frequency <- c(1, 4, 3)
+a <- factor(Direction)
+b <- factor(Frequency)
+print(a)
+print(b)
+
+```
+
+5. Enter the data below in Excel with 
+file name = import_march.csv
+
+a.Import the excel file into the Environment Pane using
+read.table() function. Write the code.
+```{r, vector = TRUE}
+j <- read.table("/cloud/project/RWorksheet_Edulag#4/import_march.csv", header= TRUE, sep= "," )
+j
+
+```
+
+b. View the dataset. Write the code and its result.
+```{r, vector = TRUE}
+e <- read.csv("/cloud/project/RWorksheet_Edulag#4/import_march.csv")
+e
+
+```
