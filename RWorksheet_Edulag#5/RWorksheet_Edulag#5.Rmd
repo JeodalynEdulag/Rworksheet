@@ -1,0 +1,192 @@
+---
+title: 'RWorksheet #5'
+author: "Jeodalyn Edulag BSIT 2-A"
+date: "2022-11-22"
+output: pdf_document
+---
+\hfill\break
+1. The table shows the enrollment of BS in Computer Science,
+SY 2010-2011.
+
+```{r, vector = TRUE}
+cas <- data.frame("Course Year" = c ("1st", "2nd", "3rd",
+                                     "4th"), " 2019–2020" =
+                                      c(80, 75, 70, 60))
+cas
+
+```
+
+a. Plot the data using a bar graph. Write the codes and 
+copy the result.
+
+```{r, vector = TRUE}
+
+e <- c("1st" = 80, "2nd" = 75, "3rd" = 70, "4th" = 60)
+barplot(e)
+
+```
+
+b. Using the same table, label the barchart with 
+Title = ” Enrollment of BS Computer Science
+horizontal axis = “Curriculum Year” and
+vertical axis = “number of students”
+
+```{r, vector = TRUE}
+
+b <- c("1st" = 80 , "2nd" = 75, "3rd" = 70, "4th" = 60)
+b
+barplot(b, 
+        main = "Enrollment of BS Computer Science", 
+        xlab = "Number of Students", 
+        ylab = "Course Year")
+
+```
+
+\hfill\break
+2. The monthly income of De Jesus family was spent on the
+following:
+60% on Food, 10% on electricity, 5% for savings, and
+25% for other miscellaneous expenses 
+
+a. Create a table for the above scenario.
+Write the codes and its result.
+```{r, vector = TRUE}
+
+bills <- c("Food", "Electricity", "Savings", 
+        "Miscellaneous_expenses")
+exp <- c(60, 10, 5, 25)
+
+m <- data.frame(bills, exp)
+m
+
+l <- table(m)
+l
+
+```
+
+b. Plot the data using a pie chart. Add labels, colors and 
+legend. Write the codes and its result.
+
+```{r, vector = TRUE}
+
+exp <- c(60, 10, 5, 25)
+d <- round(exp/sum(exp)*100,1)
+d <- paste(d, "%", sep = " ")
+
+jchart <- pie( exp, labels = d, cex = 0.8, col = rainbow(4), 
+               main = "De Jesus family Monthly Expenses")
+legend("topright", c("Food", "Electricity", "Savings", 
+                      "Miscellaneous"),
+                      cex = 0.8 , fill =rainbow(4))
+
+```
+
+\hfill\break
+3. Open the mtcars dataset.
+
+a. Create a simple histogram specifically for mpg 
+(miles per gallon) variable.Use $ to select the mpg only.
+Write the codes and its result.
+
+```{r, vector = TRUE}
+
+data(mtcars)
+
+mt <- (mtcars$mpg)
+mt
+
+hist(mt, breaks=12)
+
+```
+
+b. Colored histogram with different number of bins.
+
+```{r, vector = TRUE}
+
+hist(mtcars$mpg, breaks=12, col="red")
+
+```
+
+c. Add a Normal Curve
+
+```{r, vector = TRUE}
+
+x <- mtcars$mpg
+h <-hist(x, breaks=10, col="red", xlab="Miles Per Gallon",
+           main="Histogram with Normal Curve")
+xfit<-seq(min(x),max(x),length=40)
+yfit<-dnorm(xfit,mean=mean(x),sd=sd(x))
+yfit <- yfit*diff(h$mids[1:2])*length(x)
+lines(xfit, yfit, col="blue", lwd=2)
+
+```
+
+\hfill\break
+4. Open the iris dataset. Create a subset for each species.
+a. Write the codes and its result.
+
+```{r, vector = TRUE}
+
+data("iris")
+
+julz <- data.frame(iris)
+julz
+
+df_set <- data.frame(iris)
+df_set
+
+df_vir <- data.frame(iris)
+df_vir
+
+df_verclr <- data.frame(iris)
+df_verclr
+
+s1 <- subset(df_set, Species == 'setosa' )
+s1
+
+vs1 <- subset(df_vir, Species == 'versicolor' )
+vs1
+
+vir1 <- subset(df_verclr, Species == 'virginica' )
+vir1
+
+```
+
+b. Get the mean for every characteristics of each species using colMeans().
+Write the codes and its result.
+
+```{r, vector = TRUE}
+
+seto_1 <- colMeans(s1[sapply(df_set,is.numeric)])
+seto_1
+
+vir_2 <- colMeans(vir1[sapply(df_vir,is.numeric)])
+vir_2
+
+vs2 <- colMeans(vs1[sapply(df_verclr,is.numeric)])
+vs2
+
+```
+
+c. Combine all species by using rbind()
+The table should be look like this:
+
+```{r, vector = TRUE}
+
+jla <- rbind( seto_1, vs2, vir_2)
+bem_df <- data.frame(jla)
+bem_df
+
+```
+
+d. From the data in 4-c: Create the barplot().
+Write the codes and its result.
+The barplot should be like this.
+
+```{r, vector = TRUE}
+
+barplot(height = as.matrix(bem_df),main = "Iris Data",
+        ylab = "Mean Scores",
+        beside =T, col = rainbow(3))
+
+```
